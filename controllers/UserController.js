@@ -71,9 +71,9 @@ const UserController = {
                     message:'Wrong password'
                 })   
             }
-            const token = jwt.sign({ id: user.id}, 'dynamizatic');
+            const token = await jwt.sign({ id: user.id}, 'dynamizatic',{expiresIn:'30d'});
             user.token = token;
-            user.reload();
+            user.save();
             res.status(201).send(user) 
         }catch (error) {
             console.error(error);
