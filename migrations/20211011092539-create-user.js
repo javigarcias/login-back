@@ -47,7 +47,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      creditCarNumber: {
+      creditCardNumber: {
         type: Sequelize.STRING,
         allowNull: false
       },

@@ -24,18 +24,18 @@ const UserController = {
 
     try {
       const user = await User.create({
-        firstName: bodyData.first_name,
-        lastName: bodyData.last_name,
+        firstName: bodyData.firstName,
+        lastName: bodyData.lastName,
         email: bodyData.email,
         password: hashPass,
-        userName: bodyData.username,
+        userName: bodyData.userName,
         adress: bodyData.adress,
-        adress2: bodyData.adress_2,
+        adress2: bodyData.adress2,
         country: bodyData.country,
         state: bodyData.state,
         zip: bodyData.zip,
-        nameOfCard: bodyData.name_of_card,
-        creditCardNumber: bodyData.credit_card_number,
+        nameOfCard: bodyData.nameOfCard,
+        creditCardNumber: bodyData.creditCardNumber,
         expiration: bodyData.expiration,
         cvv: bodyData.cvv,
       });
@@ -80,7 +80,7 @@ const UserController = {
       });
       user.token = token;
       await user.save(); //Guarda el token generado en la base de  datos
-      res.status(201).send(user);
+      res.status(201).send({token: user.token});
     } catch (error) {
       console.error(error);
       res
