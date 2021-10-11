@@ -53,6 +53,7 @@ const UserController = {
             res.status(500).send({ message: 'There was a problem trying to get users'})
             }
     },
+
     async login(req,res) {
         try {
             const user = await User.findOne({
@@ -72,12 +73,31 @@ const UserController = {
             const token = jwt.sign({ id: user.id}, 'dynamizatic');
             user.token = token;
             user.reload();
-            res.send(user) 
+            res.status(201).send(user) 
         }catch (error) {
             console.error(error);
-            res.status(500).send({ message: 'There was a problem trying to get users'})
+            res.status(500).send({ message: 'There was a problem trying to login user'})
         }
     },
+
+    async getByName(req,res) {
+        try {
+            const userFind = await User.findOne({
+                where: {
+                    username: req.params.username
+                }
+            })
+            if(!userFind){
+                return res.status(400).send({
+                    message:'User not found'
+                })
+            }
+            res.status(201).send(userFind)
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'There was a problem trying to find users'})
+        }
+    }
 
     
     
