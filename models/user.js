@@ -14,25 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   User.init({
-    first_name: {
+    firstName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    last_name: {
+    lastName: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    username: {
+    userName: {
+      type: DataTypes.STRING,
+    },
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
     },
-    email: DataTypes.STRING,
     adress: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    adress_2: DataTypes.STRING,
+    adress2: DataTypes.STRING,
     country: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -45,11 +47,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    name_of_card: {
+    nameOfCard: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    credit_card_number: {
+    creditCardNumber: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -65,7 +67,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    token: DataTypes.STRING
+    token: DataTypes.STRING,
+    tokenReset: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'User',

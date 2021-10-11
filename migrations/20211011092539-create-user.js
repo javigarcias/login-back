@@ -8,27 +8,27 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      first_name: {
+      firstName: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      last_name: {
+      lastName: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      username: {
+      userName: {
+        type: Sequelize.STRING
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
-      },
-      email: {
-        type: Sequelize.STRING
       },
       adress: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      adress_2: {
+      adress2: {
         type: Sequelize.STRING
       },
       country: {
@@ -43,12 +43,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      name_of_card: {
+      nameOfCard: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      credit_card_number: {
-        type: Sequelize.INTEGER,
+      creditCarNumber: {
+        type: Sequelize.STRING,
         allowNull: false
       },
       expiration: {
@@ -64,6 +64,9 @@ module.exports = {
         allowNull: false
       },
       token: {
+        type: Sequelize.STRING
+      },
+      tokenReset: {
         type: Sequelize.STRING
       },
       createdAt: {

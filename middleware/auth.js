@@ -8,6 +8,7 @@ const auth = async (req,res,next)=>{
         if (!user) {
             return res.status(401).send({ message: 'You are not authorized' })
         }
+        req.user = user;
         next();
         
     } catch (error) {
