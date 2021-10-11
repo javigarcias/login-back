@@ -97,6 +97,27 @@ const UserController = {
             console.error(error);
             res.status(500).send({ message: 'There was a problem trying to find users'})
         }
+    },
+
+    async delete(req,res) {
+        try {
+            const user = await User.destroy({
+                where:{
+                    username:req.params.username
+                }
+            })
+            if(!user){
+                return res.status(400).send({
+                    message:'User not found'
+                })
+            }
+            res.status(201).send({
+                message: 'User deleted'
+            })
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'There was a problem delete user'})
+        }
     }
 
     
