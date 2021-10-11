@@ -52,7 +52,29 @@ const UserController = {
             console.error(error);
             res.status(500).send({ message: 'There was a problem trying to get users'})
             }
-    }
+    },
+    async login(req,res) {
+        try {
+            const user = await User.findOne({
+                where:{
+                    username:req.body.username
+                }
+            })
+            if(!user){
+                return res.status(400).send({message:'Wrong email'})
+            }
+            const isMatch = await bcrypt.compare(req.body.password,user.password)
+            if(!isMatch){
+                return res.status(400).send({
+                    message:'Wrong password'
+                })   
+            }
+            res.send(user) 
+        }catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'There was a problem trying to get users'})
+        }
+    },
 
     
     
