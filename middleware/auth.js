@@ -3,7 +3,7 @@ const { User } = require('../models');
 
 const auth = async (req,res,next)=>{
     try {
-        const token = req.headers.authorization.split(' ')[1];
+        const token = req.headers.authorization.split(' ')[1]; //Limpia y deja solo el valor del token para compararlo
         const user =await User.findOne({ where: { token: token }});
         if (!user) {
             return res.status(401).send({ message: 'You are not authorized' })

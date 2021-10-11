@@ -3,9 +3,11 @@ const cors = require('./middleware/cors');
 const usersRouter = require('./routes/users');
 const app = express();
 
+//Middleware
 app.use(express.json());
 app.use(cors);
 
+//Ruta para los diferentes endpoins de User
 app.use('/users', usersRouter);
 
 //port listen

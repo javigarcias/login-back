@@ -1,7 +1,7 @@
 const {User} = require('../models');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { update } = require('../../../MERN-test/sqlTest/controllers/UserController');
+
 
 const UserController = {
     async register(req,res) {
@@ -71,9 +71,10 @@ const UserController = {
                     message:'Wrong password'
                 })   
             }
+            //Genera Token don el secreto "dynamizatic" y expira en 30 dias
             const token = await jwt.sign({ id: user.id}, 'dynamizatic',{expiresIn:'30d'});
             user.token = token;
-            user.save();
+            user.save(); //Guarda el token generado en la base de  datos
             res.status(201).send(user) 
         }catch (error) {
             console.error(error);
