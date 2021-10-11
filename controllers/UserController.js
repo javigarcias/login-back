@@ -1,6 +1,7 @@
 const {User} = require('../models');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { update } = require('../../../MERN-test/sqlTest/controllers/UserController');
 
 const UserController = {
     async register(req,res) {
@@ -117,6 +118,28 @@ const UserController = {
         } catch (error) {
             console.error(error);
             res.status(500).send({ message: 'There was a problem delete user'})
+        }
+
+    },
+
+    async update(req,res) {
+        try {
+            const user = await User.update(req.body,{
+                where:{
+                    email: req.params.email
+                }
+            })
+            if(!user){
+                return res.status(400).send({
+                    message:'User not found'
+                })
+            }
+            res.status(201).send({
+                message: 'User data update'
+            })
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'There was a problem update user'})
         }
     }
 

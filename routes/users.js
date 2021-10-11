@@ -6,5 +6,6 @@ router.post('/login',UserController.login);
 router.get('/',UserController.getAll);
 router.get('/:username',UserController.getByName);
 router.delete('/:username',UserController.delete);
+router.put('/:email',UserController.update);
 
 module.exports = router;
