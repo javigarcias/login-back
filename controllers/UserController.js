@@ -1,5 +1,6 @@
 const {User} = require('../models');
 const bcrypt = require("bcryptjs");
+const { getAll } = require('../../../MERN-test/sqlTest/controllers/CitaController');
 
 const UserController = {
     async register(req,res) {
@@ -41,7 +42,20 @@ const UserController = {
             console.error(error);
             res.status(500).send({ message: 'There was a problem create user'})
         }
+    },
+
+    async getAll(req,res){
+        try {
+            const users = await User.findAll();
+            res.status(201).send(users);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({ message: 'There was a problem trying to get users'})
+            }
     }
+
+    
+    
 }
 
 module.exports = UserController;
