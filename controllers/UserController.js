@@ -1,6 +1,6 @@
 const {User} = require('../models');
 const bcrypt = require("bcryptjs");
-const { getAll } = require('../../../MERN-test/sqlTest/controllers/CitaController');
+const jwt = require("jsonwebtoken");
 
 const UserController = {
     async register(req,res) {
@@ -69,6 +69,9 @@ const UserController = {
                     message:'Wrong password'
                 })   
             }
+            const token = jwt.sign({ id: user.id}, 'dynamizatic');
+            user.token = token;
+            user.reload();
             res.send(user) 
         }catch (error) {
             console.error(error);
