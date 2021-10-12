@@ -14,7 +14,7 @@ const UserController = {
     //Comprobación requerimientos REGEX de Password
 
     if (!regExPassword.test(bodyData.password)) {
-      res.send({
+      res.status(400).send({
         message: "El password introducido no es válido",
       });
       return;
