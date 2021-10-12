@@ -19,18 +19,3 @@ app.use("/users", usersRouter);
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log("server running on port " + PORT));
 
-//getTransport()
-//  .then((transport) => {
-//    return transport.sendMail({
-//      from: 'mailtestdev2021@gmail.com', 
-//      to: "javigarciaweb@gmail.com", 
-//      subject: "Hello ✔", 
-//      text: "Hello world?", 
-//      html: "<b>Hello world?</b>", 
-//    });
-//  })
-//  .then((info) => {
-//    console.log("Message sent: %s", info.messageId);
-//    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-//  });
-//
