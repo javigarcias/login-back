@@ -51,8 +51,9 @@ const EventController = {
         try {
           const event = await Event.update(req.body, {
             where: {
-              id: req.body.id,
+              id: req.params.id,
             },
+          
           });
           if (!event) {
             return res.status(404).send({

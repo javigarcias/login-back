@@ -5,13 +5,13 @@ const getTransport = async ()=>{
     const testAccount = await nodemailer.createTestAccount(); 
     
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
       secure: false,
       requireTLS:true, 
       auth: {
-        user: "mailtestdev2021@gmail.com", 
-        pass: "Admin1234!", 
+        user: process.env.MAIL_USER, 
+        pass: process.env.MAIL_PASS, 
       },
     });
     return transporter;

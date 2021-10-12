@@ -74,13 +74,16 @@ const UserController = {
           message: "Wrong password",
         });
       }
-      //Genera Token don el secreto "dynamizatic" y expira en 30 dias
-      const token = jwt.sign({ id: user.id }, "dynamizatic", {
+      //Genera Token con el secreto y expira en 30 dias
+      const token = jwt.sign({ id: user.id }, process.env.SECRET_TOKEN, {
         expiresIn: "30d",
       });
       user.token = token;
       await user.save(); //Guarda el token generado en la base de  datos
-      res.status(201).send({token: user.token});
+      res.status(201).send({
+        token: user.token,
+        id: user.id,
+      });
     } catch (error) {
       console.error(error);
       res
@@ -156,27 +159,23 @@ const UserController = {
     try {
       const tokenReset = req.body.tokenReset;
       const newPass = req.body.password;
-      jwt.verify(token, "dynamizatic");
-      const user = await User.findOne({ where: { token: token } });
+      jwt.verify(token, process.env.SECRET_REFRESH_TOKEN);
+      const user = await User.findOne({ where: { tokenReset: tokenReset } });
       if (!user) {
         return res.status(401).send({ message: "Invalid Token" });
       }
       const hashPass = await bcrypt.hash(newPass, 10);
       user.pasword = hashPass;
-
     } catch (error) {
       console.error(error);
       res.status(401).send({ error, message: "Invalid Token" });
     }
   },
 
-  async generatePassUrl(req,res) {
-      try {
-          
-      } catch (error) {
-          
-      }
-  }
+  async generatePassUrl(req, res) {
+    try {
+    } catch (error) {}
+  },
 };
 
 module.exports = UserController;
